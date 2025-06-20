@@ -99,11 +99,11 @@ export default function About() {
               About Me
             </h1>
             <p className="text-lg text-white/80 mb-6">
-              Hi! I'm Arya Mehta, a <span className="text-pink-400 font-semibold">Data Engineering Specialist</span> and <span className="text-purple-400 font-semibold">Full Stack Developer</span> who transforms complex data challenges into powerful business solutions. With a proven track record of <span className="text-blue-400">optimizing database performance by 40%</span> and architecting systems that process <span className="text-green-400">millions of records daily</span>, I bring both technical expertise and business impact to the table.
+              Hi! I&apos;m Arya Mehta, a <span className="text-pink-400 font-semibold">Data Engineering Specialist</span> and <span className="text-purple-400 font-semibold">Full Stack Developer</span> who transforms complex data challenges into powerful business solutions. With a proven track record of <span className="text-blue-400">optimizing database performance by 40%</span> and architecting systems that process <span className="text-green-400">millions of records daily</span>, I bring both technical expertise and business impact to the table.
             </p>
 
             <p className="text-lg text-white/80 mb-6">
-              My technical arsenal includes <span className="text-yellow-400">AWS cloud infrastructure</span>, where I've designed high-performance database solutions and automated pipelines. I've revolutionized data processing workflows using <span className="text-purple-400">Apache Spark, Airflow, and advanced SQL optimization</span> techniques, resulting in <span className="text-pink-400">25% cost reduction</span> while maintaining robust ACID compliance. Beyond the code, I'm passionate about building <span className="text-blue-400">scalable, secure, and efficient systems</span> that drive business growth through data-driven insights.
+              My technical arsenal includes <span className="text-yellow-400">AWS cloud infrastructure</span>, where I&apos;ve designed high-performance database solutions and automated pipelines. I&apos;ve revolutionized data processing workflows using <span className="text-purple-400">Apache Spark, Airflow, and advanced SQL optimization</span> techniques, resulting in <span className="text-pink-400">25% cost reduction</span> while maintaining robust ACID compliance. Beyond the code, I&apos;m passionate about building <span className="text-blue-400">scalable, secure, and efficient systems</span> that drive business growth through data-driven insights.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 mb-8">
@@ -135,7 +135,7 @@ export default function About() {
             </div>
 
             <p className="text-lg text-white/80 mb-6">
-              <span className="text-pink-400 font-semibold">Fun Fact:</span> 🌃 When the city sleeps, I code—nighttime is when I'm most productive!
+              <span className="text-pink-400 font-semibold">Fun Fact:</span> 🌃 When the city sleeps, I code—nighttime is when I&apos;m most productive!
             </p>
           </motion.div>
         </div>

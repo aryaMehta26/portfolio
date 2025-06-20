@@ -53,7 +53,7 @@ const otherProjects = [
 
 export default function Projects() {
   return (
-    <section className="min-h-screen w-full py-20 px-4">
+    <section className="min-h-screen w-full py-20 px-4 sm:px-6 lg:px-8">
       <motion.div
         className="max-w-7xl mx-auto pt-24"
       >
@@ -61,7 +61,7 @@ export default function Projects() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="text-5xl font-bold bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 bg-clip-text text-transparent mb-4"
+          className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 bg-clip-text text-transparent mb-4 text-center sm:text-left"
         >
           Featured Projects
         </motion.h1>
@@ -69,24 +69,24 @@ export default function Projects() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="text-lg text-white/60 mb-12"
+          className="text-lg text-white/60 mb-12 text-center sm:text-left"
         >
           Some of the projects I&apos;ve worked on
         </motion.p>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-20">
           {projects.filter(p => p.featured).map((project, idx) => (
             <motion.div
               key={project.name}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: idx * 0.1 }}
-              className="relative group"
+              className="relative group h-full"
             >
               <div
                 className="absolute -inset-0.5 bg-gradient-to-r from-purple-600 to-pink-600 rounded-xl blur opacity-0 group-hover:opacity-75 transition duration-500"
               />
-              <div className="relative bg-gray-900 p-8 rounded-xl border border-white/10 h-full">
+              <div className="relative bg-gray-900 p-6 sm:p-8 rounded-xl border border-white/10 h-full flex flex-col">
                 <div className="flex justify-between items-start mb-4">
                   <div className="text-3xl text-pink-400">
                     <FiFolder />
@@ -125,8 +125,8 @@ export default function Projects() {
                   </div>
                 </div>
                 <h3 className="text-xl font-bold text-white mb-2">{project.name}</h3>
-                <p className="text-white/70 mb-4 h-24">{project.description}</p>
-                <div className="flex flex-wrap gap-2">
+                <p className="text-white/70 mb-4 flex-grow">{project.description}</p>
+                <div className="flex flex-wrap gap-2 mt-auto">
                   {project.tech.map((tech) => (
                     <span
                       key={tech}
@@ -145,19 +145,19 @@ export default function Projects() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="text-3xl font-bold text-white mb-8"
+          className="text-3xl font-bold text-white mb-8 text-center sm:text-left"
         >
           Other Noteworthy Projects
         </motion.h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {otherProjects.map((project, idx) => (
             <motion.div
               key={project.name}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: idx * 0.1 }}
-              className="bg-gray-900/50 p-6 rounded-lg hover:bg-gray-900/80 transition-all duration-300 transform hover:-translate-y-1 hover:scale-105"
+              className="bg-gradient-to-br from-gray-800/50 to-gray-900/50 p-6 rounded-lg border border-transparent hover:border-pink-500/30 transition-all duration-300 transform hover:-translate-y-1"
             >
               <div className="flex justify-between items-start mb-4">
                 <div className="text-2xl text-pink-400">
@@ -177,8 +177,8 @@ export default function Projects() {
                 </div>
               </div>
               <h3 className="text-lg font-semibold text-white mb-2">{project.name}</h3>
-              <p className="text-white/60 text-sm mb-4">{project.description}</p>
-              <div className="flex flex-wrap gap-2">
+              <p className="text-white/60 text-sm mb-4 h-20">{project.description}</p>
+              <div className="flex flex-wrap gap-2 mt-auto">
                 {project.tech.map((tech) => (
                   <span
                     key={tech}

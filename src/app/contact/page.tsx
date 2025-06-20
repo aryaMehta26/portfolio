@@ -31,14 +31,14 @@ const contacts = [
 
 export default function Contact() {
   return (
-    <section className="min-h-screen w-full py-20 px-4 flex flex-col items-center justify-center">
+    <section className="min-h-screen w-full py-20 px-4 sm:px-6 lg:px-8 flex flex-col items-center justify-center">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="w-full max-w-4xl mx-auto pt-24"
+        className="w-full max-w-4xl mx-auto pt-16 sm:pt-24"
       >
-        <h1 className="text-5xl font-bold bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 bg-clip-text text-transparent mb-8 text-center">
+        <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 bg-clip-text text-transparent mb-8 text-center">
           Get In Touch
         </h1>
         <p className="text-lg text-white/70 mb-12 text-center">
@@ -46,7 +46,7 @@ export default function Contact() {
         </p>
         <div className="flex flex-col md:flex-row gap-10 items-start justify-center">
           {/* Contact Form */}
-          <form className="flex-1 flex flex-col gap-6">
+          <form className="w-full md:w-1/2 flex flex-col gap-6">
             <input type="text" placeholder="Your Name" className="bg-gray-900/80 border border-white/10 rounded-lg px-5 py-3 text-white focus:outline-none focus:border-pink-500 transition" />
             <input type="email" placeholder="Your Email" className="bg-gray-900/80 border border-white/10 rounded-lg px-5 py-3 text-white focus:outline-none focus:border-pink-500 transition" />
             <textarea placeholder="Your Message" rows={5} className="bg-gray-900/80 border border-white/10 rounded-lg px-5 py-3 text-white focus:outline-none focus:border-pink-500 transition" />
@@ -55,7 +55,7 @@ export default function Contact() {
             </button>
           </form>
           {/* Contact Sidebar */}
-          <div className="flex-1 bg-gradient-to-br from-gray-800/80 to-gray-900/80 rounded-2xl p-8 border border-white/10 shadow-lg">
+          <div className="w-full md:w-1/2 bg-gradient-to-br from-gray-800/80 to-gray-900/80 rounded-2xl p-8 border border-white/10 shadow-lg">
             <h2 className="text-2xl font-bold text-white mb-6">Connect With Me</h2>
             <div className="flex flex-col gap-5 mb-6">
               {contacts.map((contact) => (
@@ -64,11 +64,13 @@ export default function Contact() {
                   href={contact.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-4 text-white/90 hover:text-pink-400 transition-colors text-lg"
+                  className="flex items-center gap-4 text-white/90 hover:text-pink-400 transition-colors text-base sm:text-lg"
                 >
-                  <span>{contact.icon}</span>
-                  <span className="font-semibold">{contact.label}</span>
-                  <span className="font-mono text-base">{contact.value}</span>
+                  <span className="flex-shrink-0">{contact.icon}</span>
+                  <div className="flex flex-col sm:flex-row sm:items-center gap-x-4">
+                    <span className="font-semibold w-16">{contact.label}</span>
+                    <span className="font-mono text-sm sm:text-base">{contact.value}</span>
+                  </div>
                 </a>
               ))}
             </div>

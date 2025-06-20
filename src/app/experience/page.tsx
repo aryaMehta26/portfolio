@@ -43,7 +43,7 @@ export default function Experience() {
   const [selectedCompany, setSelectedCompany] = useState(0);
 
   return (
-    <section className="min-h-screen w-full flex flex-col items-center py-20 px-4 pt-24 bg-gradient-to-br from-gray-900 via-purple-900 to-gray-900">
+    <section className="min-h-screen w-full flex flex-col items-center py-20 px-4 sm:px-6 lg:px-8 pt-24 bg-gradient-to-br from-gray-900 via-purple-900 to-gray-900">
       <motion.div 
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -53,7 +53,7 @@ export default function Experience() {
         <motion.h1 
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          className="text-5xl font-bold bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 bg-clip-text text-transparent mb-2"
+          className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 bg-clip-text text-transparent mb-2"
         >
           Work Experience
         </motion.h1>
@@ -66,10 +66,10 @@ export default function Experience() {
           Building scalable systems and solving complex problems
         </motion.p>
 
-        <div className="grid grid-cols-12 gap-4 relative">
+        <div className="flex flex-col lg:flex-row gap-8">
           {/* Left sidebar with company selection */}
-          <div className="col-span-12 lg:col-span-3">
-            <div className="sticky top-24 space-y-2">
+          <div className="w-full lg:w-1/4">
+            <div className="lg:sticky top-24 space-y-2">
               {experience.map((exp, idx) => (
                 <motion.button
                   key={exp.company}
@@ -100,15 +100,15 @@ export default function Experience() {
           </div>
 
           {/* Right side content */}
-          <div className="col-span-12 lg:col-span-9">
+          <div className="w-full lg:w-3/4">
             <motion.div
               key={selectedCompany}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="bg-gradient-to-br from-gray-800/50 to-gray-900/50 rounded-xl p-8 border border-white/10 hover:border-pink-500/30 shadow transition-all duration-300 backdrop-blur-md"
+              className="bg-gradient-to-br from-gray-800/50 to-gray-900/50 rounded-xl p-6 sm:p-8 border border-white/10 hover:border-pink-500/30 shadow transition-all duration-300 backdrop-blur-md"
             >
-              <div className="flex items-start justify-between mb-6">
+              <div className="flex flex-col sm:flex-row items-start justify-between mb-6 gap-4">
                 <div className="flex items-center gap-4 mb-2">
                   {experience[selectedCompany].logo && (
                     <div className="w-16 h-16 relative rounded-xl overflow-hidden border border-white/10 bg-white/10">
@@ -122,10 +122,10 @@ export default function Experience() {
                     </div>
                   )}
                   <div>
-                    <h2 className="text-3xl font-bold text-white mb-2">
+                    <h2 className="text-2xl sm:text-3xl font-bold text-white mb-2">
                       {experience[selectedCompany].title}
                     </h2>
-                    <div className="flex items-center gap-2 mb-4">
+                    <div className="flex items-center flex-wrap gap-x-2 gap-y-1 mb-4">
                       <a
                         href={experience[selectedCompany].companyUrl}
                         target="_blank"
@@ -135,7 +135,7 @@ export default function Experience() {
                         {experience[selectedCompany].company}
                         <FiExternalLink className="inline" />
                       </a>
-                      <span className="text-white/40">•</span>
+                      <span className="text-white/40 hidden sm:inline">•</span>
                       <span className="text-white/60">{experience[selectedCompany].period}</span>
                     </div>
                     <p className="text-white/60 mb-6">{experience[selectedCompany].location}</p>

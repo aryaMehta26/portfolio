@@ -61,16 +61,16 @@ const achievements = [
 
 export default function About() {
   return (
-    <section className="min-h-screen w-full py-20 px-4">
+    <section className="min-h-screen w-full py-20 px-4 sm:px-6 lg:px-8">
       <div className="max-w-6xl mx-auto pt-24">
         {/* Hero Section */}
-        <div className="flex flex-col md:flex-row items-center gap-12 mb-20">
+        <div className="flex flex-col md:flex-row items-center gap-12 mb-20 text-center md:text-left">
           {/* Photo Section */}
           <motion.div
             initial={{ opacity: 0, scale: 0.5 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5 }}
-            className="relative w-64 h-64 md:w-80 md:h-80"
+            className="relative w-56 h-56 sm:w-64 sm:h-64 md:w-80 md:h-80"
           >
             <div className="absolute inset-0 bg-gradient-to-r from-purple-500 to-pink-500 rounded-3xl transform rotate-6 opacity-20"></div>
             <div className="absolute inset-0 bg-gradient-to-r from-purple-500 to-pink-500 rounded-3xl transform -rotate-6 opacity-20"></div>
@@ -95,18 +95,18 @@ export default function About() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="flex-1"
           >
-            <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 bg-clip-text text-transparent mb-6">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 bg-clip-text text-transparent mb-6">
               About Me
             </h1>
-            <p className="text-lg text-white/80 mb-6">
+            <p className="text-base sm:text-lg text-white/80 mb-6">
               Hi! I&apos;m Arya Mehta, a <span className="text-pink-400 font-semibold">Data Engineering Specialist</span> and <span className="text-purple-400 font-semibold">Full Stack Developer</span> who transforms complex data challenges into powerful business solutions. With a proven track record of <span className="text-blue-400">optimizing database performance by 40%</span> and architecting systems that process <span className="text-green-400">millions of records daily</span>, I bring both technical expertise and business impact to the table.
             </p>
 
-            <p className="text-lg text-white/80 mb-6">
+            <p className="text-base sm:text-lg text-white/80 mb-6">
               My technical arsenal includes <span className="text-yellow-400">AWS cloud infrastructure</span>, where I&apos;ve designed high-performance database solutions and automated pipelines. I&apos;ve revolutionized data processing workflows using <span className="text-purple-400">Apache Spark, Airflow, and advanced SQL optimization</span> techniques, resulting in <span className="text-pink-400">25% cost reduction</span> while maintaining robust ACID compliance. Beyond the code, I&apos;m passionate about building <span className="text-blue-400">scalable, secure, and efficient systems</span> that drive business growth through data-driven insights.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 mb-8">
+            <div className="flex flex-col sm:flex-row gap-4 mb-8 justify-center md:justify-start">
               <motion.a
                 href="/SDE.pdf"
                 target="_blank"
@@ -134,7 +134,7 @@ export default function About() {
               </motion.a>
             </div>
 
-            <p className="text-lg text-white/80 mb-6">
+            <p className="text-base sm:text-lg text-white/80 mb-6">
               <span className="text-pink-400 font-semibold">Fun Fact:</span> 🌃 When the city sleeps, I code—nighttime is when I&apos;m most productive!
             </p>
           </motion.div>
@@ -147,8 +147,8 @@ export default function About() {
           transition={{ duration: 0.5, delay: 0.4 }}
           className="mb-20"
         >
-          <h2 className="text-3xl font-bold text-white mb-8">My Toolbox</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-h-[600px] overflow-y-auto pr-4 styled-scrollbar">
+          <h2 className="text-2xl sm:text-3xl font-bold text-white mb-8 text-center md:text-left">My Toolbox</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-h-[600px] sm:overflow-y-auto pr-4 styled-scrollbar">
             {skills.map((skill, idx) => (
               <motion.div
                 key={skill.category}
@@ -183,8 +183,8 @@ export default function About() {
           transition={{ duration: 0.5, delay: 0.6 }}
           className="mb-20"
         >
-          <h2 className="text-3xl font-bold text-white mb-8">Achievements</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-h-[500px] overflow-y-auto pr-4 styled-scrollbar">
+          <h2 className="text-2xl sm:text-3xl font-bold text-white mb-8 text-center md:text-left">Achievements</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-h-[500px] sm:overflow-y-auto pr-4 styled-scrollbar">
             {achievements.map((achievement, idx) => (
               <motion.div
                 key={achievement.title}

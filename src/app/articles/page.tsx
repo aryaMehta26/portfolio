@@ -84,13 +84,13 @@ export default function Articles() {
   }
 
   return (
-    <section className="min-h-screen w-full py-20 px-4">
+    <section className="min-h-screen w-full py-20 px-4 sm:px-6 lg:px-8">
       <div className="max-w-6xl mx-auto pt-24">
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="text-5xl font-bold bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 bg-clip-text text-transparent mb-4"
+          className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 bg-clip-text text-transparent mb-4 text-center sm:text-left"
         >
           Articles & Insights
         </motion.h1>
@@ -98,14 +98,14 @@ export default function Articles() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="text-lg text-white/60 mb-8"
+          className="text-lg text-white/60 mb-8 text-center sm:text-left"
         >
           Exploring data engineering, machine learning, and software development through writing
         </motion.p>
 
         {/* Search and Filter Section */}
-        <div className="mb-8 space-y-4">
-          <div className="relative">
+        <div className="mb-8 flex flex-col sm:flex-row gap-4">
+          <div className="relative flex-grow">
             <FiSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-white/40" />
             <input
               type="text"
@@ -116,7 +116,7 @@ export default function Articles() {
             />
           </div>
 
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-2 items-start">
             {allTags.map((tag) => (
               <button
                 key={tag}
@@ -135,16 +135,16 @@ export default function Articles() {
         </div>
 
         {/* Articles Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredArticles.map((article, idx) => (
             <motion.article
               key={article.link}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: idx * 0.1 }}
-              className="bg-gradient-to-br from-gray-800/50 to-gray-900/50 rounded-xl p-8 border border-white/10 hover:border-pink-500/30 shadow transition-all duration-300 backdrop-blur-md"
+              className="bg-gradient-to-br from-gray-800/50 to-gray-900/50 rounded-xl p-6 sm:p-8 border border-white/10 hover:border-pink-500/30 shadow transition-all duration-300 backdrop-blur-md flex flex-col"
             >
-              <h2 className="text-xl font-semibold text-white mb-3">
+              <h2 className="text-xl font-semibold text-white mb-3 flex-grow">
                 <a
                   href={article.link}
                   target="_blank"
@@ -152,13 +152,13 @@ export default function Articles() {
                   className="hover:text-pink-400 transition-colors flex items-center gap-2"
                 >
                   {article.title}
-                  <FiExternalLink className="inline" />
+                  <FiExternalLink className="inline ml-2" />
                 </a>
               </h2>
               <p className="text-white/60 mb-4 line-clamp-3">{article.description}</p>
-              <div className="flex items-center justify-between">
+              <div className="flex items-center justify-between mt-auto">
                 <div className="flex items-center text-white/40 text-sm">
-                  <FiClock className="mr-1" />
+                  <FiClock className="mr-1.5" />
                   {article.date}
                 </div>
                 <div className="flex flex-wrap gap-2">

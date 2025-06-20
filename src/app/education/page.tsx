@@ -39,35 +39,35 @@ const certifications = [
 
 export default function Education() {
   return (
-    <section className="min-h-screen w-full py-20 px-4">
+    <section className="min-h-screen w-full py-20 px-4 sm:px-6 lg:px-8">
       <div className="max-w-6xl mx-auto pt-24">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <h1 className="text-5xl font-bold bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 bg-clip-text text-transparent mb-2">
+          <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 bg-clip-text text-transparent mb-2 text-center sm:text-left">
             Education
           </h1>
-          <p className="text-lg text-white/60 mb-12">
+          <p className="text-lg text-white/60 mb-12 text-center sm:text-left">
             My academic journey and professional certifications
           </p>
 
           {/* Education Section */}
           <div className="mb-20">
-            <h2 className="text-3xl font-bold text-white mb-8">Academic Background</h2>
-            <div className="grid gap-6">
+            <h2 className="text-3xl font-bold text-white mb-8 text-center sm:text-left">Academic Background</h2>
+            <div className="space-y-8">
               {education.map((edu, idx) => (
                 <motion.div
                   key={edu.degree + edu.school}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: idx * 0.1 }}
-                  className="bg-gradient-to-br from-gray-800/50 to-gray-900/50 rounded-xl p-8 border border-white/10 hover:border-pink-500/30 transition-all duration-300"
+                  className="bg-gradient-to-br from-gray-800/50 to-gray-900/50 rounded-xl p-6 sm:p-8 border border-white/10 hover:border-pink-500/30 transition-all duration-300"
                 >
-                  <div className="flex items-start gap-6">
+                  <div className="flex flex-col sm:flex-row items-start gap-6">
                     {edu.logo && (
-                      <div className="w-16 h-16 relative rounded-xl overflow-hidden border border-white/10 bg-white/10">
+                      <div className="w-16 h-16 relative rounded-xl overflow-hidden border border-white/10 bg-white/10 flex-shrink-0">
                         <Image
                           src={edu.logo}
                           alt={edu.school + ' logo'}
@@ -78,15 +78,15 @@ export default function Education() {
                       </div>
                     )}
                     <div className="flex-1">
-                      <h3 className="text-2xl font-bold text-white mb-2">{edu.school}</h3>
+                      <h3 className="text-xl sm:text-2xl font-bold text-white mb-2">{edu.school}</h3>
                       <h4 className="text-lg text-pink-400 mb-2">{edu.degree}</h4>
                       <h5 className="text-md text-white/80 mb-2">{edu.major}</h5>
-                      <div className="flex items-center gap-2 text-white/60 mb-4">
+                      <div className="flex flex-col sm:flex-row items-start sm:items-center gap-x-2 text-white/60 mb-4">
                         <span>{edu.location}</span>
-                        <span>•</span>
+                        <span className="hidden sm:inline">•</span>
                         <span>{edu.period}</span>
                       </div>
-                      <p className="text-white/80 mb-2">{edu.description}</p>
+                      <p className="text-white/80 mb-4">{edu.description}</p>
                       <div className="flex flex-wrap gap-2">
                         {edu.skills.map((skill) => (
                           <span key={skill} className="text-xs font-medium px-3 py-1 rounded-full bg-purple-500/20 text-purple-300 border border-purple-500/30">
@@ -103,28 +103,28 @@ export default function Education() {
 
           {/* Certifications Section */}
           <div>
-            <h2 className="text-3xl font-bold text-white mb-8">Professional Certifications</h2>
-            <div className="grid gap-6">
+            <h2 className="text-3xl font-bold text-white mb-8 text-center sm:text-left">Professional Certifications</h2>
+            <div className="space-y-8">
               {certifications.map((cert, idx) => (
                 <motion.div
                   key={cert.title}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: idx * 0.1 }}
-                  className="bg-gradient-to-br from-gray-800/50 to-gray-900/50 rounded-xl p-8 border border-white/10 hover:border-pink-500/30 transition-all duration-300"
+                  className="bg-gradient-to-br from-gray-800/50 to-gray-900/50 rounded-xl p-6 sm:p-8 border border-white/10 hover:border-pink-500/30 transition-all duration-300"
                 >
-                  <div className="flex items-start gap-6">
-                    <div className="p-4 bg-pink-500/20 rounded-xl">
+                  <div className="flex flex-col sm:flex-row items-start gap-6">
+                    <div className="p-4 bg-pink-500/20 rounded-xl self-start">
                       {cert.icon}
                     </div>
                     <div className="flex-1">
-                      <div className="flex items-center justify-between mb-2">
-                        <h3 className="text-2xl font-bold text-white">{cert.title}</h3>
+                      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-2 gap-2">
+                        <h3 className="text-xl sm:text-2xl font-bold text-white">{cert.title}</h3>
                         <a
                           href={cert.credentialUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-pink-400 hover:text-pink-300 flex items-center gap-2"
+                          className="text-pink-400 hover:text-pink-300 flex items-center gap-2 text-sm sm:text-base flex-shrink-0"
                         >
                           View Credential
                           <FiExternalLink className="inline" />

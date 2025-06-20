@@ -1,7 +1,7 @@
 'use client';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { FaGithub, FaLinkedin, FaMedium } from 'react-icons/fa';
-import { useRef, useEffect, useState } from 'react';
+import { useRef, useEffect, useState, useMemo } from 'react';
 import { FiArrowDown } from 'react-icons/fi';
 import { FaPython, FaAws, FaReact, FaNodeJs, FaDocker, FaDatabase, FaGitAlt } from 'react-icons/fa';
 import { SiMongodb, SiPostgresql, SiApacheairflow, SiKubernetes, SiTensorflow, SiPytorch, SiFastapi, SiTypescript, SiGraphql, SiRedis, SiApachespark, SiMysql, SiTableau, SiDjango, SiNextdotjs } from 'react-icons/si';
@@ -48,6 +48,22 @@ const techIcons: Record<string, React.ReactNode> = {
 export default function Home() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [positions, setPositions] = useState<Array<{ left: number; top: number }>>([]);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  const displayedTechnologies = useMemo(() => {
+    if (isMobile) {
+      // Show fewer items on mobile for performance and clarity
+      return technologies.slice(0, 15);
+    }
+    return technologies;
+  }, [isMobile]);
   
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -55,13 +71,13 @@ export default function Home() {
   });
 
   useEffect(() => {
-    // Calculate initial positions
-    const newPositions = technologies.map(() => ({
+    // Recalculate positions when the number of technologies changes
+    const newPositions = displayedTechnologies.map(() => ({
       left: 10 + Math.random() * 80,
       top: 10 + Math.random() * 80
     }));
     setPositions(newPositions);
-  }, []);
+  }, [displayedTechnologies]);
 
   const y = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
@@ -70,10 +86,10 @@ export default function Home() {
     <div className="fixed inset-0 w-full min-h-screen">
       {/* Floating tech stack background with icon and name, time-based only */}
       <div className="absolute inset-0 w-full h-full overflow-hidden">
-        {technologies.map((tech, i) => (
+        {displayedTechnologies.map((tech, i) => (
           <motion.div
             key={tech + i}
-            className="absolute text-white/30 font-bold pointer-events-none text-xl md:text-2xl tracking-wider flex items-center gap-2"
+            className="absolute text-white/30 font-bold pointer-events-none text-lg sm:text-xl md:text-2xl tracking-wider flex items-center gap-2"
             initial={{ opacity: 0 }}
             animate={{
               opacity: [0.2, 0.3, 0.2],
@@ -95,7 +111,7 @@ export default function Home() {
             }}
           >
             {techIcons[tech as string] && (
-              <span className="text-2xl md:text-3xl text-purple-400">{techIcons[tech as string]}</span>
+              <span className="text-xl sm:text-2xl md:text-3xl text-purple-400">{techIcons[tech as string]}</span>
             )}
             <span>{tech}</span>
           </motion.div>
@@ -115,7 +131,7 @@ export default function Home() {
       <motion.div 
         ref={containerRef}
         style={{ y, opacity }}
-        className="relative z-10 flex flex-col items-center justify-center min-h-screen pt-20 pb-32 px-4"
+        className="relative z-10 flex flex-col items-center justify-center min-h-screen pt-20 pb-32 px-4 sm:px-6 lg:px-8"
       >
         <div className="text-center max-w-4xl mx-auto">
           <motion.div
@@ -124,9 +140,9 @@ export default function Home() {
             transition={{ duration: 0.5 }}
             className="mb-6"
           >
-            <h1 className="text-5xl md:text-7xl font-bold mb-4 relative">
+            <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold mb-4 relative">
               <motion.div
-                className="absolute -inset-x-8 -inset-y-4 bg-gradient-to-r from-purple-500/20 via-pink-500/20 to-purple-500/20 blur-3xl -z-10"
+                className="absolute -inset-x-2 sm:-inset-x-8 -inset-y-4 bg-gradient-to-r from-purple-500/20 via-pink-500/20 to-purple-500/20 blur-3xl -z-10"
                 animate={{
                   scale: [1, 1.1],
                   opacity: [0.3, 0.5]
@@ -145,7 +161,7 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.3 }}
-              className="text-xl md:text-2xl text-white/80 font-light"
+              className="text-lg sm:text-xl md:text-2xl text-white/80 font-light"
             >
               Data Engineer & Full Stack Developer
             </motion.h2>
@@ -166,12 +182,12 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.9 }}
-            className="flex gap-6 justify-center mb-12"
+            className="flex gap-4 sm:gap-6 justify-center mb-12"
           >
             {[
-              { href: "https://github.com/aryaMehta26", icon: <FaGithub className="w-7 h-7" /> },
-              { href: "https://www.linkedin.com/in/arya-mehta-/", icon: <FaLinkedin className="w-7 h-7" /> },
-              { href: "https://medium.com/@aryaMehta26", icon: <FaMedium className="w-7 h-7" /> }
+              { href: "https://github.com/aryaMehta26", icon: <FaGithub className="w-6 h-6 sm:w-7 sm:h-7" /> },
+              { href: "https://www.linkedin.com/in/arya-mehta-/", icon: <FaLinkedin className="w-6 h-6 sm:w-7 sm:h-7" /> },
+              { href: "https://medium.com/@aryaMehta26", icon: <FaMedium className="w-6 h-6 sm:w-7 sm:h-7" /> }
             ].map((social) => (
               <motion.a
                 key={social.href}
@@ -182,7 +198,7 @@ export default function Home() {
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <div className="absolute -inset-3 bg-gradient-to-r from-purple-500/20 via-pink-500/20 to-purple-500/20 rounded-full opacity-0 group-hover:opacity-100 blur transition-all duration-300" />
+                <div className="absolute -inset-2 sm:-inset-3 bg-gradient-to-r from-purple-500/20 via-pink-500/20 to-purple-500/20 rounded-full opacity-0 group-hover:opacity-100 blur transition-all duration-300" />
                 <div className="relative p-2 rounded-full backdrop-blur-sm border border-white/5 transition-all duration-300 group-hover:border-pink-500/20">
                   <span className="text-white/60 group-hover:text-white transition-colors duration-300">
                     {social.icon}

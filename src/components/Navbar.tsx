@@ -54,7 +54,7 @@ export default function Navbar() {
           </div>
 
           {/* Center: Navigation links */}
-          <div className="flex-1 flex justify-center items-center space-x-10">
+          <div className="hidden md:flex flex-1 justify-center items-center space-x-10">
             {navLinks.map((link) => (
               <Link
                 key={link.href}

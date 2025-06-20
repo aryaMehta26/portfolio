@@ -1,6 +1,6 @@
 'use client';
 import { motion } from 'framer-motion';
-import { FiAward, FiBook, FiExternalLink } from 'react-icons/fi';
+import { FiAward, FiExternalLink } from 'react-icons/fi';
 import Image from 'next/image';
 
 const education = [

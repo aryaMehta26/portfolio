@@ -42,7 +42,7 @@ export default function Contact() {
           Get In Touch
         </h1>
         <p className="text-lg text-white/70 mb-12 text-center">
-          I'm always open to new opportunities and collaborations. Whether you have a question or just want to say hi, feel free to reach out!
+          I&apos;m always open to new opportunities and collaborations. Whether you have a question or just want to say hi, feel free to reach out!
         </p>
         <div className="flex flex-col md:flex-row gap-10 items-start justify-center">
           {/* Contact Form */}
@@ -73,7 +73,7 @@ export default function Contact() {
               ))}
             </div>
             <div className="bg-gray-900/60 rounded-lg p-4 text-white/70 text-sm">
-              Currently open to full-time opportunities in Data Engineering and Full Stack Development roles. Let's connect and explore how we can work together!
+              Currently open to full-time opportunities in Data Engineering and Full Stack Development roles. Let&apos;s connect and explore how we can work together!
             </div>
           </div>
         </div>

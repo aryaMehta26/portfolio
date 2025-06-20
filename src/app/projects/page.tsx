@@ -71,7 +71,7 @@ export default function Projects() {
           transition={{ duration: 0.5, delay: 0.1 }}
           className="text-lg text-white/60 mb-12"
         >
-          Some of the projects I've worked on
+          Some of the projects I&apos;ve worked on
         </motion.p>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-20">

@@ -15,16 +15,11 @@ export default function Connections() {
   const [connections, setConnections] = useState<Connection[]>([]);
   const [search, setSearch] = useState('');
   const [selected, setSelected] = useState<Connection | null>(null);
-  const [left, setLeft] = useState('50%');
 
   useEffect(() => {
     fetch('/api/connections')
       .then(res => res.json())
       .then(data => setConnections(data.connections));
-  }, []);
-
-  useEffect(() => {
-    setLeft(Math.random() * 100 + '%');
   }, []);
 
   const filtered = connections.filter(conn =>
@@ -40,7 +35,7 @@ export default function Connections() {
           People. Inspiration. Networking.
         </h1>
         <p className="mb-8 text-lg text-white/70">
-          A curated list of interesting people I've met or hope to meet. Powered by Notion.
+          A curated list of interesting people I have met or hope to meet. Powered by Notion.
         </p>
         <input
           type="text"

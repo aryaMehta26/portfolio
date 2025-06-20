@@ -15,7 +15,6 @@ interface Article {
 export default function Articles() {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
-  const [showFeatured, setShowFeatured] = useState(true);
   const [articles, setArticles] = useState<Article[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -46,8 +45,7 @@ export default function Articles() {
     const matchesSearch = article.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
                          article.description.toLowerCase().includes(searchQuery.toLowerCase());
     const matchesTags = selectedTags.length === 0 || selectedTags.some(tag => article.tags.includes(tag));
-    const matchesFeatured = !showFeatured || article.featured;
-    return matchesSearch && matchesTags && matchesFeatured;
+    return matchesSearch && matchesTags;
   });
 
   const toggleTag = (tag: string) => {

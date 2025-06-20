@@ -40,7 +40,7 @@ export default function Connections() {
           People. Inspiration. Networking.
         </h1>
         <p className="mb-8 text-lg text-white/70">
-          A curated list of interesting people I've met or hope to meet. Powered by Notion.
+          A curated list of interesting people I have ve met or hope to meet. Powered by Notion.
         </p>
         <input
           type="text"

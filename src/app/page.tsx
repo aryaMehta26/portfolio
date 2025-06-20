@@ -47,8 +47,6 @@ const techIcons: Record<string, React.ReactNode> = {
 
 export default function Home() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [mouseX, setMouseX] = useState(0); // -1 (left) to 1 (right)
-  const [mouseY, setMouseY] = useState(0); // -1 (top) to 1 (bottom)
   const [positions, setPositions] = useState<Array<{ left: number; top: number }>>([]);
   
   const { scrollYProgress } = useScroll({
@@ -63,15 +61,6 @@ export default function Home() {
       top: 10 + Math.random() * 80
     }));
     setPositions(newPositions);
-  }, []);
-
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      setMouseX(((e.clientX / window.innerWidth) * 2) - 1); // -1 to 1
-      setMouseY(((e.clientY / window.innerHeight) * 2) - 1); // -1 to 1
-    };
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
   const y = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);

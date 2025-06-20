@@ -148,7 +148,7 @@ export default function About() {
           className="mb-20"
         >
           <h2 className="text-2xl sm:text-3xl font-bold text-white mb-8 text-center md:text-left">My Toolbox</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-h-[600px] sm:overflow-y-auto pr-4 styled-scrollbar">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:max-h-[600px] md:overflow-y-auto md:pr-4 md:styled-scrollbar">
             {skills.map((skill, idx) => (
               <motion.div
                 key={skill.category}
@@ -184,7 +184,7 @@ export default function About() {
           className="mb-20"
         >
           <h2 className="text-2xl sm:text-3xl font-bold text-white mb-8 text-center md:text-left">Achievements</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-h-[500px] sm:overflow-y-auto pr-4 styled-scrollbar">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:max-h-[500px] md:overflow-y-auto md:pr-4 md:styled-scrollbar">
             {achievements.map((achievement, idx) => (
               <motion.div
                 key={achievement.title}

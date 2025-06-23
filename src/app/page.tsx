@@ -83,7 +83,7 @@ export default function Home() {
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
   return (
-    <div className="fixed inset-0 w-full min-h-screen">
+    <div className="flex flex-col items-center justify-center min-h-[calc(100vh-4rem)] w-full px-4 sm:px-6 lg:px-8 -mt-8">
       {/* Floating tech stack background with icon and name, time-based only */}
       <div className="absolute inset-0 w-full h-full overflow-hidden">
         {displayedTechnologies.map((tech, i) => (
@@ -131,7 +131,7 @@ export default function Home() {
       <motion.div 
         ref={containerRef}
         style={{ y, opacity }}
-        className="relative z-10 flex flex-col items-center justify-center min-h-screen pt-20 pb-32 px-4 sm:px-6 lg:px-8"
+        className="relative z-10 flex flex-col items-center justify-center min-h-screen w-full px-4 sm:px-6 lg:px-8"
       >
         <div className="text-center max-w-4xl mx-auto">
           <motion.div
@@ -154,17 +154,17 @@ export default function Home() {
                 }}
               />
               <span className="bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 bg-clip-text text-transparent relative z-10">
-                Arya Mehta
+          Arya Mehta
               </span>
             </h1>
-            <motion.h2
+        <motion.h2
               initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
+          animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.3 }}
               className="text-lg sm:text-xl md:text-2xl text-white/80 font-light"
-            >
+        >
               Data Engineer & Full Stack Developer
-            </motion.h2>
+        </motion.h2>
           </motion.div>
 
           <motion.p

@@ -29,7 +29,7 @@ export default function Connections() {
   );
 
   return (
-    <section className="min-h-screen py-20 px-4">
+    <section className="min-h-screen w-full py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-6xl mx-auto">
         <h1 className="text-5xl font-bold mb-4 bg-gradient-to-r from-purple-400 via-pink-500 to-blue-400 bg-clip-text text-transparent">
           People. Inspiration. Networking.

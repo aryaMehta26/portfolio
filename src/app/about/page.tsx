@@ -61,10 +61,10 @@ const achievements = [
 
 export default function About() {
   return (
-    <section className="min-h-screen w-full py-20 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-6xl mx-auto pt-24">
+    <section className="min-h-screen w-full py-12 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-6xl mx-auto">
         {/* Hero Section */}
-        <div className="flex flex-col md:flex-row items-center gap-12 mb-20 text-center md:text-left">
+        <div className="flex flex-col md:flex-row items-center gap-12 mb-6 text-center md:text-left">
           {/* Photo Section */}
           <motion.div
             initial={{ opacity: 0, scale: 0.5 }}

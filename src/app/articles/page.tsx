@@ -58,7 +58,7 @@ export default function Articles() {
 
   if (isLoading) {
     return (
-      <section className="min-h-screen w-full py-20 px-4">
+      <section className="min-h-screen w-full px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto pt-24 flex flex-col items-center justify-center">
           <FiLoader className="w-8 h-8 text-pink-500 animate-spin mb-4" />
           <p className="text-white/60">Loading articles...</p>
@@ -69,7 +69,7 @@ export default function Articles() {
 
   if (error) {
     return (
-      <section className="min-h-screen w-full py-20 px-4">
+      <section className="min-h-screen w-full px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto pt-24 flex flex-col items-center justify-center">
           <p className="text-red-400 mb-4">{error}</p>
           <button 
@@ -84,13 +84,13 @@ export default function Articles() {
   }
 
   return (
-    <section className="min-h-screen w-full py-20 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-6xl mx-auto pt-24">
+    <section className="min-h-screen w-full py-12 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-6xl mx-auto">
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 bg-clip-text text-transparent mb-4 text-center sm:text-left"
+          className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 bg-clip-text text-transparent mb-4 text-center sm:text-left leading-tight"
         >
           Articles & Insights
         </motion.h1>
@@ -104,19 +104,24 @@ export default function Articles() {
         </motion.p>
 
         {/* Search and Filter Section */}
-        <div className="mb-8 flex flex-col sm:flex-row gap-4">
-          <div className="relative flex-grow">
-            <FiSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-white/40" />
+        <div className="mb-8">
+          <form className="flex w-full max-w-md items-center bg-white/5 border border-white/10 rounded-lg shadow-sm px-2 py-1 mx-auto" onSubmit={e => e.preventDefault()}>
+            <span className="flex items-center pl-2 pr-1 text-white/40">
+              <FiSearch className="w-5 h-5" />
+            </span>
             <input
               type="text"
               placeholder="Search articles..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-10 pr-4 py-2 bg-white/5 border border-white/10 rounded-lg text-white placeholder-white/40 focus:outline-none focus:border-pink-500/50"
+              className="flex-1 bg-transparent outline-none border-none text-white placeholder-white/40 py-1 px-2 text-base"
             />
-          </div>
+            <button type="submit" className="ml-2 px-3 py-1 bg-gradient-to-r from-pink-500 to-purple-500 text-white font-semibold rounded-md hover:from-pink-600 hover:to-purple-600 transition-all text-sm shadow">
+              Search
+            </button>
+          </form>
 
-          <div className="flex flex-wrap gap-2 items-start">
+          <div className="flex flex-wrap gap-2 items-start justify-center mt-4">
             {allTags.map((tag) => (
               <button
                 key={tag}

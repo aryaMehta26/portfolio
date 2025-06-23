@@ -43,7 +43,7 @@ export default function Experience() {
   const [selectedCompany, setSelectedCompany] = useState(0);
 
   return (
-    <section className="min-h-screen w-full flex flex-col items-center py-20 px-4 sm:px-6 lg:px-8 pt-24 bg-gradient-to-br from-gray-900 via-purple-900 to-gray-900">
+    <section className="min-h-screen w-full py-12 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-gray-900 via-purple-900 to-gray-900">
       <motion.div 
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -61,7 +61,7 @@ export default function Experience() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.2 }}
-          className="text-lg text-white/60 mb-12"
+          className="text-lg text-white/60 mb-8"
         >
           Building scalable systems and solving complex problems
         </motion.p>
@@ -70,7 +70,7 @@ export default function Experience() {
           {/* Left sidebar with company selection */}
           <div className="w-full lg:w-1/4">
             <div className="lg:sticky top-24 space-y-2">
-              {experience.map((exp, idx) => (
+        {experience.map((exp, idx) => (
                 <motion.button
                   key={exp.company}
                   initial={{ opacity: 0, x: -20 }}
@@ -95,8 +95,8 @@ export default function Experience() {
                     <p className="text-sm text-white/50 group-hover:text-white/60">{exp.title}</p>
                   </div>
                 </motion.button>
-              ))}
-            </div>
+        ))}
+      </div>
           </div>
 
           {/* Right side content */}
@@ -152,8 +152,8 @@ export default function Experience() {
                     >
                       {skill}
                     </span>
-                  ))}
-                </div>
+        ))}
+      </div>
 
                 <ul className="space-y-4">
                   {experience[selectedCompany].details.map((detail, idx) => (

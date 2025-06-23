@@ -53,9 +53,9 @@ const otherProjects = [
 
 export default function Projects() {
   return (
-    <section className="min-h-screen w-full py-20 px-4 sm:px-6 lg:px-8">
+    <section className="min-h-screen w-full py-12 px-4 sm:px-6 lg:px-8">
       <motion.div
-        className="max-w-7xl mx-auto pt-24"
+        className="max-w-7xl mx-auto"
       >
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
@@ -76,8 +76,8 @@ export default function Projects() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-20">
           {projects.filter(p => p.featured).map((project, idx) => (
-            <motion.div
-              key={project.name}
+          <motion.div
+            key={project.name}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: idx * 0.1 }}
@@ -115,7 +115,7 @@ export default function Projects() {
                         className="relative group p-2"
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.95 }}
-                      >
+          >
                         <div className="absolute -inset-2 bg-gradient-to-r from-purple-500/40 to-pink-500/40 rounded-lg opacity-0 group-hover:opacity-100 blur transition-opacity duration-300" />
                         <div className="relative text-white/60 group-hover:text-white transition-colors">
                           <FiExternalLink size={20} />
@@ -138,8 +138,8 @@ export default function Projects() {
                 </div>
               </div>
             </motion.div>
-          ))}
-        </div>
+              ))}
+            </div>
 
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
@@ -187,10 +187,10 @@ export default function Projects() {
                     {tech}
                   </span>
                 ))}
-              </div>
-            </motion.div>
-          ))}
-        </div>
+            </div>
+          </motion.div>
+        ))}
+      </div>
       </motion.div>
     </section>
   );

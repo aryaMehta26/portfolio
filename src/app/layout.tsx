@@ -20,7 +20,7 @@ export default function RootLayout({
       <body className={`${inter.className} bg-gray-900 text-white`}>
         <div className="fixed top-0 left-0 -z-10 h-full w-full bg-gradient-to-br from-gray-900 via-purple-900 to-gray-900" />
         <Navbar />
-        <main>{children}</main>
+        <main className="pt-16">{children}</main>
       </body>
     </html>
   );

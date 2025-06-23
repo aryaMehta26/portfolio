@@ -39,8 +39,8 @@ const certifications = [
 
 export default function Education() {
   return (
-    <section className="min-h-screen w-full py-20 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-6xl mx-auto pt-24">
+    <section className="min-h-screen w-full py-12 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}

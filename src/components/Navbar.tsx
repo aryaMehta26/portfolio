@@ -2,7 +2,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { motion } from 'framer-motion';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { FiMenu, FiX } from 'react-icons/fi';
 
 const navLinks = [
@@ -20,6 +20,8 @@ export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [hasMounted, setHasMounted] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
+  const lastScrollY = useRef(0);
 
   useEffect(() => {
     setHasMounted(true);
@@ -28,10 +30,18 @@ export default function Navbar() {
   useEffect(() => {
     if (hasMounted) {
       const handleScroll = () => {
-        setIsScrolled(window.scrollY > 20);
+        const currentScrollY = window.scrollY;
+        setIsScrolled(currentScrollY > 20);
+        if (currentScrollY <= 0) {
+          setIsVisible(true);
+        } else if (currentScrollY > lastScrollY.current) {
+          setIsVisible(false); // scrolling down
+        } else {
+          setIsVisible(true); // scrolling up
+        }
+        lastScrollY.current = currentScrollY;
       };
       window.addEventListener('scroll', handleScroll);
-      handleScroll(); // Check on mount
       return () => window.removeEventListener('scroll', handleScroll);
     }
   }, [hasMounted]);
@@ -42,52 +52,38 @@ export default function Navbar() {
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.5 }}
-        className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
-          hasMounted && isScrolled ? 'bg-black/60 backdrop-blur-md border-b border-white/5' : 'bg-transparent'
-        }`}
+        className={`fixed top-0 left-0 w-full z-50 h-16 flex items-center transition-all duration-300 ${isScrolled ? 'bg-black/40 shadow-lg backdrop-blur-md' : 'bg-transparent'}`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
-            {/* Left: Logo */}
-            <div className="flex-shrink-0">
-              <Link href="/" className="flex items-center">
-                <motion.div
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
-                  transition={{ duration: 0.5 }}
-                  className="w-10 h-10 rounded-lg bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center"
-                >
-                  <span className="text-white text-2xl font-bold">A</span>
-                </motion.div>
-              </Link>
-            </div>
-
+        {/* Absolute left: Logo */}
+        <div className="flex-shrink-0 flex items-center h-full pl-0">
+          <Link href="/" className="flex items-center h-full">
+            <motion.div
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ duration: 0.5 }}
+              className="w-10 h-10 rounded-lg bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center shadow-lg"
+            >
+              <span className="text-white text-2xl font-extrabold">A</span>
+            </motion.div>
+          </Link>
+        </div>
+        {/* Centered nav links and menu */}
+        <div className="flex-1">
+          <div className="max-w-7xl mx-auto w-full flex items-center h-16">
             {/* Center: Desktop Navigation links */}
-            <div className="hidden md:block">
-              <div className="ml-10 flex items-baseline space-x-4">
+            <div className="hidden md:flex flex-1 justify-center">
+              <div className="flex items-center space-x-10">
                 {navLinks.map((link) => (
                   <Link
                     key={link.href}
                     href={link.href}
-                    className="relative group px-3 py-2 rounded-md text-sm font-medium"
+                    className={`px-4 py-2 text-lg font-bold text-white/80 transition-colors duration-300 hover:text-pink-400 ${pathname === link.href ? 'text-pink-400' : ''}`}
                   >
-                    <span className={`transition-colors duration-300 ${
-                      pathname === link.href ? 'text-pink-400' : 'text-white/80 hover:text-white'
-                    }`}>
-                      {link.label}
-                    </span>
-                    {pathname === link.href ? (
-                      <motion.div
-                        className="absolute bottom-0 left-0 w-full h-0.5 bg-pink-400"
-                        layoutId="underline"
-                        initial={false}
-                      />
-                    ) : null}
+                    {link.label}
                   </Link>
                 ))}
               </div>
             </div>
-
             {/* Right: Mobile menu button */}
             <div className="-mr-2 flex md:hidden">
               <button

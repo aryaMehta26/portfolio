@@ -59,7 +59,7 @@ export default function Connections() {
               >
                 <h2 className="text-xl font-bold text-white mb-1">{conn.name}</h2>
                 <p className="text-white/70 mb-1">{conn.title}</p>
-                <a href={conn.profileUrl} className="text-pink-400 hover:underline" target="_blank" rel="noopener noreferrer">{conn.company}</a>
+                <span className="text-pink-400">{conn.company}</span>
                 <div className="mt-4">
                   <span className={`px-3 py-1 rounded-full text-xs font-semibold ${conn.status === 'Met' ? 'bg-green-600/20 text-green-400' : 'bg-blue-600/20 text-blue-400'}`}>
                     {conn.status}
@@ -93,9 +93,7 @@ export default function Connections() {
                 {selected.name}
               </h2>
               <p className="text-lg text-pink-400 font-semibold mb-2 text-center">{selected.title}</p>
-              <a href={selected.profileUrl} className="block text-center text-white/80 hover:text-pink-400 mb-4 underline" target="_blank" rel="noopener noreferrer">
-                {selected.company}
-              </a>
+              <span className="block text-center text-white/80 mb-4 underline cursor-default">{selected.company}</span>
               <div className="flex justify-center mb-4">
                 <span className={`px-4 py-1 rounded-full text-sm font-semibold ${selected.status === 'Met' ? 'bg-green-600/20 text-green-400' : 'bg-blue-600/20 text-blue-400'}`}>{selected.status}</span>
               </div>

@@ -20,7 +20,6 @@ export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [hasMounted, setHasMounted] = useState(false);
-  const [isVisible, setIsVisible] = useState(true);
   const lastScrollY = useRef(0);
 
   useEffect(() => {
@@ -32,13 +31,6 @@ export default function Navbar() {
       const handleScroll = () => {
         const currentScrollY = window.scrollY;
         setIsScrolled(currentScrollY > 20);
-        if (currentScrollY <= 0) {
-          setIsVisible(true);
-        } else if (currentScrollY > lastScrollY.current) {
-          setIsVisible(false); // scrolling down
-        } else {
-          setIsVisible(true); // scrolling up
-        }
         lastScrollY.current = currentScrollY;
       };
       window.addEventListener('scroll', handleScroll);

@@ -9,7 +9,7 @@ const education = [
     major: 'Applied Data Science',
     school: 'San José State University',
     location: 'San José, CA, USA',
-    period: 'Jan 2025 - Dec 2027',
+    period: 'Jan 2025 - Dec 2026',
     logo: '/sjsu.png',
     description: 'I am gaining expertise in advanced techniques such as machine learning, deep learning, big data technologies, and business intelligence. The program covers key areas like data visualization, mathematical methods for analytics, and large-scale data systems. I am specializing in Data Engineering and Analytics Technologies, which equips me with the skills to design and optimize complex data architectures. Through a graduate project, I am applying these skills to real-world challenges in the data field.',
     skills: ['Data Engineering', 'Big Data', 'Machine Learning', 'Deep Learning', 'Business Intelligence']

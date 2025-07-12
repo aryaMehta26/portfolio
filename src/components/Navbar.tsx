@@ -46,24 +46,24 @@ export default function Navbar() {
         transition={{ duration: 0.5 }}
         className={`fixed top-0 left-0 w-full z-50 h-16 flex items-center transition-all duration-300 ${isScrolled ? 'bg-black/40 shadow-lg backdrop-blur-md' : 'bg-transparent'}`}
       >
-        {/* Absolute left: Logo */}
-        <div className="flex-shrink-0 flex items-center h-full pl-0">
-          <Link href="/" className="flex items-center h-full">
-            <motion.div
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              transition={{ duration: 0.5 }}
-              className="w-10 h-10 rounded-lg bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center shadow-lg"
-            >
-              <span className="text-white text-2xl font-extrabold">A</span>
-            </motion.div>
-          </Link>
-        </div>
-        {/* Centered nav links and menu */}
-        <div className="flex-1">
-          <div className="max-w-7xl mx-auto w-full flex items-center h-16">
-            {/* Center: Desktop Navigation links */}
-            <div className="hidden md:flex flex-1 justify-center">
+        <div className="w-full h-16 flex items-center">
+          {/* Logo: always flush left */}
+          <div className="flex-shrink-0 flex items-center h-full ml-4">
+            <Link href="/" className="flex items-center h-full">
+              <motion.div
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                transition={{ duration: 0.5 }}
+                className="w-10 h-10 rounded-lg bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center shadow-lg"
+              >
+                <span className="text-white text-2xl font-extrabold">A</span>
+              </motion.div>
+            </Link>
+          </div>
+          {/* Nav/Menu: fills rest of space, with padding */}
+          <div className="flex-1 h-full relative flex items-center px-4 sm:px-6 lg:px-8">
+            {/* Centered nav links (desktop) */}
+            <div className="hidden md:flex absolute left-1/2 top-0 h-full -translate-x-1/2 items-center justify-center">
               <div className="flex items-center space-x-10">
                 {navLinks.map((link) => (
                   <Link
@@ -76,8 +76,8 @@ export default function Navbar() {
                 ))}
               </div>
             </div>
-            {/* Right: Mobile menu button */}
-            <div className="-mr-2 flex md:hidden">
+            {/* Mobile menu button (right) */}
+            <div className="-mr-2 flex md:hidden ml-auto">
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                 className="inline-flex items-center justify-center p-2 rounded-md text-white/70 hover:text-white hover:bg-white/10 focus:outline-none"

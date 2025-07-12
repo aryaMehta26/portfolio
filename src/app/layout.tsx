@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "../components/Navbar";
+import { Analytics } from "@vercel/analytics/react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,6 +22,7 @@ export default function RootLayout({
         <div className="fixed top-0 left-0 -z-10 h-full w-full bg-gradient-to-br from-gray-900 via-purple-900 to-gray-900" />
         <Navbar />
         <main className="pt-16">{children}</main>
+        <Analytics />
       </body>
     </html>
   );

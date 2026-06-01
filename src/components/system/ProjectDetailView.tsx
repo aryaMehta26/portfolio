@@ -16,16 +16,7 @@ const riseIn = {
   transition: { duration: 0.45, ease: [0.22, 1, 0.36, 1] as const },
 };
 
-function resolveRepoHref(project: FeaturedProject) {
-  if (project.repo && project.repo.trim().length > 0) {
-    return project.repo;
-  }
-
-  return 'https://github.com/aryaMehta26';
-}
-
 export default function ProjectDetailView({ project }: ProjectDetailViewProps) {
-  const repoHref = resolveRepoHref(project);
   const repoLabel = project.repoLabel ?? 'Open repository';
 
   return (
@@ -68,15 +59,17 @@ export default function ProjectDetailView({ project }: ProjectDetailViewProps) {
               </div>
 
               <div className="flex flex-wrap gap-3 lg:justify-end">
-                <a
-                  href={repoHref}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="command-chip bg-[var(--color-ink)] text-[var(--color-surface)]"
-                >
-                  {repoLabel}
-                  <ArrowUpRight className="h-4 w-4" />
-                </a>
+                {project.repo ? (
+                  <a
+                    href={project.repo}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="command-chip bg-[var(--color-ink)] text-[var(--color-surface)]"
+                  >
+                    {repoLabel}
+                    <ArrowUpRight className="h-4 w-4" />
+                  </a>
+                ) : null}
                 {project.demo ? (
                   <a
                     href={project.demo}

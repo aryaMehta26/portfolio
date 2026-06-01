@@ -528,8 +528,6 @@ export const featuredProjects: FeaturedProject[] = [
     challenge: "Audio features suffer from static representation gaps, class imbalances, speaker tone variability, and cross-corpus noise.",
     solution: "Designed a dual-branch network separating Log-Mel spatial spectrogram features and MFCC temporal coefficients, applying speaker normalization and multi-utterance dialogue context.",
     stack: ["PyTorch", "Librosa", "Python", "Docker", "Git"],
-    repo: "/Group_2_Final_Presentation.pdf",
-    repoLabel: "View Presentation PDF",
     accents: ["+15.8% accuracy gain", "RTF 0.00008 (Real-time)", "Focal Loss tuning"],
     architecture: ["audio source", "log-mel cnn", "mfcc dense", "context cnn", "bi-lstm attention", "focal classification"],
     year: "2026",

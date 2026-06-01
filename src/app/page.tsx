@@ -15,6 +15,7 @@ import GitHubPulse from "@/components/system/GitHubPulse";
 import TelemetryWidget from "@/components/portfolio/TelemetryWidget";
 import BuildPipeline from "@/components/system/BuildPipeline";
 import SystemSpecsWidget from "@/components/portfolio/SystemSpecsWidget";
+import PacketRouterGame from "@/components/system/PacketRouterGame";
 import {
   featuredProjects,
   identity,
@@ -446,6 +447,11 @@ export default function HomePage() {
           GITHUB PULSE — NEW
           ═══════════════════════════════════ */}
       <GitHubPulse />
+
+      {/* ═══════════════════════════════════
+          INTERACTIVE GAME — LOCAL ONLY
+          ═══════════════════════════════════ */}
+      <PacketRouterGame />
 
       <ContactPaths />
     </>

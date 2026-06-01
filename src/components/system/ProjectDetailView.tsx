@@ -43,9 +43,6 @@ export default function ProjectDetailView({ project }: ProjectDetailViewProps) {
                 <div className="flex flex-wrap items-center gap-3">
                   <p className="section-kicker">{project.category}</p>
                   <span className="rounded-full border border-[var(--color-line)] bg-white/75 px-3 py-1 text-xs uppercase tracking-[0.2em] text-[var(--color-muted)]">
-                    {project.year}
-                  </span>
-                  <span className="rounded-full border border-[var(--color-line)] bg-white/75 px-3 py-1 text-xs uppercase tracking-[0.2em] text-[var(--color-muted)]">
                     {project.status}
                   </span>
                 </div>

@@ -144,9 +144,6 @@ export default function SystemsOS() {
                             </p>
                             <h4 className="mt-2 text-2xl font-semibold text-[var(--color-ink)]">{project.cardName}</h4>
                           </div>
-                          <span className="rounded-full border border-[var(--color-line)] bg-white/80 px-3 py-1 text-xs text-[var(--color-muted)]">
-                            {project.year}
-                          </span>
                         </div>
 
                         <p className="mt-4 text-sm leading-7 text-[var(--color-muted)]">{project.cardHook}</p>

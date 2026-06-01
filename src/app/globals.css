@@ -1,45 +1,361 @@
 @import "tailwindcss";
 
 :root {
-  --background: #0a0a0a;
-  --foreground: #ededed;
+  --color-surface: #f4eefc;
+  --color-panel: rgba(254, 251, 255, 0.72);
+  --color-ink: #1d1830;
+  --color-muted: #655d7d;
+  --color-line: rgba(29, 24, 48, 0.12);
+  --color-signal: #9e6df4;
+  --color-signal-soft: rgba(158, 109, 244, 0.16);
+  --color-deep: #7d56cf;
+  --color-lilac: #dbc8ff;
+  --color-night: #1a1428;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-background: var(--color-surface);
+  --color-foreground: var(--color-ink);
+  --font-sans: "Avenir Next", "Segoe UI", "Helvetica Neue", sans-serif;
+  --font-display: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background-color: transparent;
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  background:
+    radial-gradient(circle at top left, rgba(255, 255, 255, 0.95), transparent 28%),
+    radial-gradient(circle at 86% 14%, rgba(158, 109, 244, 0.18), transparent 24%),
+    radial-gradient(circle at 24% 72%, rgba(219, 200, 255, 0.3), transparent 18%),
+    linear-gradient(180deg, #faf6ff 0%, #f4eefc 48%, #eee5fb 100%);
+  color: var(--color-ink);
+  font-family: "Avenir Next", "Segoe UI", "Helvetica Neue", sans-serif;
 }
 
-/* Custom Scrollbar */
-.styled-scrollbar::-webkit-scrollbar {
-  width: 8px;
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 14% 18%, rgba(158, 109, 244, 0.12), transparent 20%),
+    radial-gradient(circle at 82% 24%, rgba(219, 200, 255, 0.12), transparent 24%),
+    radial-gradient(circle at 50% 88%, rgba(98, 208, 255, 0.08), transparent 18%);
+  filter: blur(20px);
+  opacity: 0.9;
+  z-index: -1;
 }
 
-.styled-scrollbar::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 4px;
+::selection {
+  background: rgba(203, 98, 48, 0.16);
+  color: var(--color-ink);
 }
 
-.styled-scrollbar::-webkit-scrollbar-thumb {
-  background: rgba(236, 72, 153, 0.3);
-  border-radius: 4px;
-  transition: all 0.3s ease;
+a {
+  text-decoration: none;
 }
 
-.styled-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: rgba(236, 72, 153, 0.5);
+.display-face {
+  font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
 }
 
-/* Hide scrollbar for Firefox */
-.styled-scrollbar {
-  scrollbar-width: thin;
-  scrollbar-color: rgba(236, 72, 153, 0.3) rgba(255, 255, 255, 0.05);
+/* ─────────────────────────────────
+   Panel system — with spotlight hover
+   ───────────────────────────────── */
+
+.system-panel {
+  position: relative;
+  border: 1px solid var(--color-line);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.56), rgba(245, 236, 255, 0.36));
+  box-shadow: 0 30px 120px rgba(41, 26, 82, 0.09);
+  backdrop-filter: blur(18px);
+  overflow: hidden;
+  transition: box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.system-panel::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    400px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(158, 109, 244, 0.08),
+    transparent 50%
+  );
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.system-panel:hover::after {
+  opacity: 1;
+}
+
+.system-panel:hover {
+  box-shadow: 0 40px 140px rgba(41, 26, 82, 0.14);
+}
+
+.signal-card {
+  position: relative;
+  border: 1px solid var(--color-line);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.76), rgba(242, 232, 255, 0.46));
+  border-radius: 1.8rem;
+  padding: 1.25rem;
+  overflow: hidden;
+  transition: box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.35s ease;
+}
+
+.signal-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    300px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(158, 109, 244, 0.1),
+    transparent 50%
+  );
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.signal-card:hover::after {
+  opacity: 1;
+}
+
+.signal-card:hover {
+  border-color: rgba(158, 109, 244, 0.2);
+  transform: translateY(-2px);
+  box-shadow: 0 20px 60px rgba(41, 26, 82, 0.1);
+}
+
+/* ─────────────────────────────────
+   Command chips + kickers
+   ───────────────────────────────── */
+
+.command-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  border-radius: 9999px;
+  padding: 0.85rem 1.25rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  transition: transform 300ms ease, box-shadow 300ms ease;
+}
+
+.command-chip:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 36px rgba(41, 26, 82, 0.15);
+}
+
+.section-kicker {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--color-signal);
+}
+
+.console-dot {
+  display: inline-block;
+  height: 0.65rem;
+  width: 0.65rem;
+  border-radius: 9999px;
+}
+
+/* ─────────────────────────────────
+   Grids + terminal
+   ───────────────────────────────── */
+
+.circuit-grid {
+  background-image:
+    linear-gradient(rgba(29, 24, 48, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(29, 24, 48, 0.05) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+.terminal-shell {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.03)),
+    linear-gradient(180deg, #171221 0%, #120e1b 100%);
+  box-shadow: 0 24px 70px rgba(24, 14, 43, 0.28);
+}
+
+/* Terminal scan line overlay */
+.terminal-scanline {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(158, 109, 244, 0.02) 2px,
+    rgba(158, 109, 244, 0.02) 4px
+  );
+}
+
+.terminal-scanline::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: linear-gradient(
+    180deg,
+    rgba(158, 109, 244, 0.04),
+    transparent
+  );
+  animation: scanSweep 4s ease-in-out infinite;
+}
+
+/* ─────────────────────────────────
+   Ambient orbs
+   ───────────────────────────────── */
+
+.ambient-orb {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(60px);
+  pointer-events: none;
+  opacity: 0.8;
+  animation: driftFloat 16s ease-in-out infinite;
+}
+
+.ambient-orb-a {
+  top: -3rem;
+  left: -2rem;
+  height: 16rem;
+  width: 16rem;
+  background: rgba(158, 109, 244, 0.22);
+}
+
+.ambient-orb-b {
+  top: 18%;
+  right: -5rem;
+  height: 18rem;
+  width: 18rem;
+  background: rgba(219, 200, 255, 0.28);
+  animation-duration: 20s;
+}
+
+.ambient-orb-c {
+  bottom: -4rem;
+  left: 36%;
+  height: 14rem;
+  width: 14rem;
+  background: rgba(98, 208, 255, 0.12);
+  animation-duration: 18s;
+}
+
+.hero-noise {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.04)),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140' viewBox='0 0 140 140'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%231d1830' fill-opacity='.045'%3E%3Ccircle cx='10' cy='10' r='1'/%3E%3Ccircle cx='80' cy='30' r='1'/%3E%3Ccircle cx='50' cy='90' r='1'/%3E%3Ccircle cx='120' cy='110' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* ─────────────────────────────────
+   Case file entries
+   ───────────────────────────────── */
+
+.casefile-entry {
+  position: relative;
+  box-shadow: 0 26px 70px rgba(18, 14, 27, 0.18);
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.3s ease;
+}
+
+.casefile-entry::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(120deg, rgba(158, 109, 244, 0.16), transparent 28%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.04), transparent 100%);
+  opacity: 0.9;
+  pointer-events: none;
+}
+
+.casefile-entry:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 32px 90px rgba(18, 14, 27, 0.24);
+}
+
+/* ─────────────────────────────────
+   Keyframe animations
+   ───────────────────────────────── */
+
+@keyframes driftFloat {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate3d(12px, -18px, 0) scale(1.06);
+  }
+
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+@keyframes scanSweep {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(calc(100vh));
+    opacity: 0;
+  }
+}
+
+@keyframes shimmerGlow {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+/* Smooth counter glow pulse */
+@keyframes glowPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(158, 109, 244, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 24px 8px rgba(158, 109, 244, 0.15);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(158, 109, 244, 0);
+  }
+}
+
+.glow-pulse {
+  animation: glowPulse 1.5s ease-out;
 }

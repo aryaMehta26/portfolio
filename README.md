@@ -1,41 +1,40 @@
-<<<<<<< HEAD
-# portfolio
-My Personal Portfolio Website
-=======
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Arya OS Portfolio
 
-## Getting Started
+This portfolio is intentionally structured as a systems console instead of a standard personal site.
 
-First, run the development server:
+## Run locally
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open `http://localhost:3000`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Experience structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `EntryHero`: cinematic entry layer and signal links
+- `ManifestoRail`: identity and proof section
+- `OperatingModel`: interactive decision-pattern section
+- `CaseFiles`: curated flagship project stories
+- `BuildGraph`: capability lanes instead of a plain timeline
+- `ProjectArchive`: searchable GitHub-backed archive
+- `ContactPaths`: different CTAs for recruiters, builders, and proof-seekers
 
-## Learn More
+## Code architecture
 
-To learn more about Next.js, take a look at the following resources:
+- `src/app/page.tsx`
+  Orchestrates the full homepage experience
+- `src/components/system/*`
+  Houses the custom portfolio modules
+- `src/data/portfolio.ts`
+  Curated narrative content and fallback archive data
+- `src/lib/github.ts`
+  GitHub archive fetch and normalization logic
+- `src/app/api/github/route.ts`
+  Live repo archive endpoint with fallback behavior
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## External data
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
->>>>>>> 81d3681 (Initial commit from Create Next App)
+- `src/app/api/medium/route.ts` reads Medium RSS
+- `src/app/api/connections/route.ts` requires `NOTION_API_KEY` and `NOTION_CONNECTIONS_DB_ID`

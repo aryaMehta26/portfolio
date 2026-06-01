@@ -1,10 +1,18 @@
 import { NextResponse } from 'next/server';
 import { Client, PageObjectResponse } from '@notionhq/client';
 
-const notion = new Client({ auth: process.env.NOTION_API_KEY || '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' });
-const databaseId = process.env.NOTION_CONNECTIONS_DB_ID || '216e81ecce38802291ffecacb85867db';
-
 export async function GET() {
+  const notionApiKey = process.env.NOTION_API_KEY;
+  const databaseId = process.env.NOTION_CONNECTIONS_DB_ID;
+
+  if (!notionApiKey || !databaseId) {
+    return NextResponse.json(
+      { connections: [], error: 'Missing Notion configuration.' },
+      { status: 503 }
+    );
+  }
+
+  const notion = new Client({ auth: notionApiKey });
   const response = await notion.databases.query({ database_id: databaseId });
   const firstPage = response.results[0] as PageObjectResponse | undefined;
   if (firstPage && 'properties' in firstPage) {
@@ -24,5 +32,5 @@ export async function GET() {
 }
 
 export async function POST() {
-  // ... existing code ...
-} 
+  return NextResponse.json({ error: 'Method not implemented.' }, { status: 405 });
+}

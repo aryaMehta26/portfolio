@@ -1,119 +1,128 @@
 'use client';
+
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { motion } from 'framer-motion';
-import { useState, useEffect, useRef } from 'react';
-import { FiMenu, FiX } from 'react-icons/fi';
+import { ArrowUpRight, Menu, X } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import { identity } from '@/data/portfolio';
 
 const navLinks = [
-  { href: '/about', label: 'About' },
-  { href: '/articles', label: 'Articles' },
-  { href: '/projects', label: 'Projects' },
-  { href: '/experience', label: 'Work' },
-  { href: '/education', label: 'Education' },
-  { href: '/connections', label: 'Connections' },
-  { href: '/contact', label: 'Contact' },
+  { href: '#writing', label: 'Writing' },
+  { href: '#stack', label: 'Stack' },
+  { href: '#modes', label: 'Modes' },
+  { href: '#case-files', label: 'Case Files' },
+  { href: '#graph', label: 'Graph' },
+  { href: '#contact', label: 'Contact' },
 ];
 
 export default function Navbar() {
   const pathname = usePathname();
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const [hasMounted, setHasMounted] = useState(false);
-  const lastScrollY = useRef(0);
+
+  const hrefFor = (href: string) => (pathname === '/' ? href : `/${href}`);
 
   useEffect(() => {
     setHasMounted(true);
+    const onScroll = () => setIsScrolled(window.scrollY > 20);
+    onScroll();
+    window.addEventListener('scroll', onScroll);
+    return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  useEffect(() => {
-    if (hasMounted) {
-      const handleScroll = () => {
-        const currentScrollY = window.scrollY;
-        setIsScrolled(currentScrollY > 20);
-        lastScrollY.current = currentScrollY;
-      };
-      window.addEventListener('scroll', handleScroll);
-      return () => window.removeEventListener('scroll', handleScroll);
-    }
-  }, [hasMounted]);
+  if (!hasMounted) {
+    return null;
+  }
 
   return (
     <>
       <motion.nav
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.5 }}
-        className={`fixed top-0 left-0 w-full z-50 h-16 flex items-center transition-all duration-300 ${isScrolled ? 'bg-black/40 shadow-lg backdrop-blur-md' : 'bg-transparent'}`}
+        initial={{ y: -70, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+        className="fixed inset-x-0 top-0 z-50 px-4 pt-4 sm:px-6"
       >
-        <div className="w-full h-16 flex items-center">
-          {/* Logo: always flush left */}
-          <div className="flex-shrink-0 flex items-center h-full ml-4">
-            <Link href="/" className="flex items-center h-full">
-              <motion.div
-                initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
-                transition={{ duration: 0.5 }}
-                className="w-10 h-10 rounded-lg bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center shadow-lg"
-              >
-                <span className="text-white text-2xl font-extrabold">A</span>
-              </motion.div>
-            </Link>
-          </div>
-          {/* Nav/Menu: fills rest of space, with padding */}
-          <div className="flex-1 h-full relative flex items-center px-4 sm:px-6 lg:px-8">
-            {/* Centered nav links (desktop) */}
-            <div className="hidden md:flex absolute left-1/2 top-0 h-full -translate-x-1/2 items-center justify-center">
-              <div className="flex items-center space-x-10">
-                {navLinks.map((link) => (
-                  <Link
-                    key={link.href}
-                    href={link.href}
-                    className={`px-4 py-2 text-lg font-bold text-white/80 transition-colors duration-300 hover:text-pink-400 ${pathname === link.href ? 'text-pink-400' : ''}`}
-                  >
-                    {link.label}
-                  </Link>
-                ))}
-              </div>
+        <div
+          className={`mx-auto flex max-w-7xl items-center justify-between rounded-full border px-4 py-3 transition-all duration-500 sm:px-6 ${
+            isScrolled
+              ? 'border-white/60 bg-[rgba(245,239,227,0.78)] shadow-[0_20px_60px_rgba(15,23,42,0.12)] backdrop-blur-xl'
+              : 'border-[rgba(20,33,61,0.08)] bg-[rgba(245,239,227,0.52)] backdrop-blur-md'
+          }`}
+        >
+          <Link href="/" className="flex items-center gap-3 text-[var(--color-ink)]">
+            <span className="flex h-10 w-10 items-center justify-center rounded-full border border-[var(--color-line)] bg-white/70 text-sm font-semibold">
+              AM
+            </span>
+            <div className="leading-tight">
+              <p className="text-sm font-semibold uppercase tracking-[0.24em]">{identity.brand}</p>
+              <p className="text-xs text-[var(--color-muted)]">{identity.subline}</p>
             </div>
-            {/* Mobile menu button (right) */}
-            <div className="-mr-2 flex md:hidden ml-auto">
-              <button
-                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="inline-flex items-center justify-center p-2 rounded-md text-white/70 hover:text-white hover:bg-white/10 focus:outline-none"
+          </Link>
+
+          <div className="hidden items-center gap-7 md:flex">
+            {navLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={hrefFor(link.href)}
+                className="text-sm font-medium text-[var(--color-muted)] transition-colors duration-300 hover:text-[var(--color-ink)]"
               >
-                <span className="sr-only">Open main menu</span>
-                {isMobileMenuOpen ? <FiX className="block h-6 w-6" /> : <FiMenu className="block h-6 w-6" />}
-              </button>
-            </div>
+                {link.label}
+              </Link>
+            ))}
+            <a
+              href="/SDE.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="command-chip bg-[var(--color-ink)] text-[var(--color-surface)]"
+            >
+              Resume
+              <ArrowUpRight className="h-4 w-4" />
+            </a>
           </div>
+
+          <button
+            type="button"
+            onClick={() => setIsOpen((value) => !value)}
+            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-[var(--color-line)] text-[var(--color-ink)] md:hidden"
+            aria-label="Toggle menu"
+          >
+            {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </button>
         </div>
       </motion.nav>
 
-      {/* Mobile Menu */}
       <motion.div
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: isMobileMenuOpen ? 1 : 0, y: isMobileMenuOpen ? 0 : -20 }}
-        transition={{ duration: 0.3 }}
-        className={`fixed inset-x-0 top-16 z-40 md:hidden ${isMobileMenuOpen ? 'block' : 'hidden'}`}
+        initial={false}
+        animate={isOpen ? { opacity: 1, y: 0 } : { opacity: 0, y: -12 }}
+        transition={{ duration: 0.25 }}
+        className={`fixed inset-x-4 top-[5.5rem] z-40 rounded-[2rem] border border-white/60 bg-[rgba(245,239,227,0.92)] p-5 shadow-[0_24px_80px_rgba(15,23,42,0.14)] backdrop-blur-xl md:hidden ${
+          isOpen ? 'pointer-events-auto' : 'pointer-events-none'
+        }`}
       >
-        <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-black/95 backdrop-blur-lg shadow-lg border-t border-white/10">
+        <div className="flex flex-col gap-4">
           {navLinks.map((link) => (
             <Link
               key={link.href}
-              href={link.href}
-              onClick={() => setIsMobileMenuOpen(false)}
-              className={`block px-3 py-2 rounded-md text-base font-medium transition-colors duration-300 ${
-                pathname === link.href
-                  ? 'text-pink-400 bg-white/5'
-                  : 'text-white/80 hover:text-white hover:bg-white/5'
-              }`}
+              href={hrefFor(link.href)}
+              onClick={() => setIsOpen(false)}
+              className="rounded-2xl border border-[var(--color-line)] bg-white/55 px-4 py-3 text-sm font-medium text-[var(--color-ink)]"
             >
               {link.label}
             </Link>
           ))}
+          <a
+            href="/SDE.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="command-chip justify-center bg-[var(--color-ink)] text-[var(--color-surface)]"
+          >
+            Open Resume
+            <ArrowUpRight className="h-4 w-4" />
+          </a>
         </div>
       </motion.div>
     </>
   );
-} 
+}

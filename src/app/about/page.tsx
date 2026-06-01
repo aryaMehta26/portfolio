@@ -1,213 +1,209 @@
 'use client';
-import { motion } from 'framer-motion';
-import { FiAward, FiCode, FiDatabase, FiCloud, FiCpu, FiLayers } from 'react-icons/fi';
+
 import Image from 'next/image';
+import { motion } from 'framer-motion';
+import { ArrowUpRight, Download, MoonStar, Sparkles, Trophy } from 'lucide-react';
 
 const skills = [
   {
-    category: 'Data Engineering',
-    icon: <FiDatabase className="w-6 h-6" />,
-    items: ['ETL/ELT Pipeline Design', 'Apache Airflow', 'Apache Kafka', 'Data Modeling', 'Data Quality', 'dbt']
+    category: 'Data engineering',
+    items: ['ETL/ELT pipeline design', 'Apache Airflow', 'Apache Kafka', 'PySpark', 'Hadoop', 'Data lake design', 'Data quality'],
   },
   {
-    category: 'Big Data & Cloud',
-    icon: <FiCloud className="w-6 h-6" />,
-    items: ['AWS Services', 'Apache Spark', 'Hadoop', 'Snowflake', 'Docker', 'Kubernetes']
+    category: 'Cloud + scale',
+    items: ['AWS EKS / S3', 'Apache Spark', 'Docker', 'Kubernetes', 'CI/CD automation', 'Performance tuning'],
   },
   {
-    category: 'Machine Learning & AI',
-    icon: <FiCpu className="w-6 h-6" />,
-    items: ['TensorFlow', 'Keras', 'scikit-learn', 'Feature Engineering', 'MLOps', 'Model Deployment']
+    category: 'Applied AI',
+    items: ['LangGraph', 'LangChain', 'RAG / Vector search', 'PyTorch / TensorFlow', 'scikit-learn', 'NLP & MLOps'],
   },
   {
-    category: 'Programming',
-    icon: <FiCode className="w-6 h-6" />,
-    items: ['Python', 'Java (Spring Boot)', 'JavaScript', 'TypeScript', 'React/Next.js', 'System Design']
+    category: 'Backend + product',
+    items: ['Python / Go', 'Java / Spring Boot', 'FastAPI / REST APIs', 'React / Next.js', 'WebSockets', 'System design'],
   },
-  {
-    category: 'Databases',
-    icon: <FiDatabase className="w-6 h-6" />,
-    items: ['MySQL', 'PostgreSQL', 'MongoDB', 'Redis', 'Query Optimization', 'Database Design']
-  },
-  {
-    category: 'DevOps & Tools',
-    icon: <FiLayers className="w-6 h-6" />,
-    items: ['CI/CD', 'Git', 'Docker', 'APIs', 'Testing', 'Monitoring']
-  }
 ];
 
 const achievements = [
   {
-    title: 'SJ Hacks 2025 Champion',
-    event: 'San Jose City Hackathon',
-    description: 'Developed an innovative solution for city safety and urban development, winning first place among 100+ participants'
+    title: 'SJ Hacks winner',
+    context: 'Hackathon execution',
+    description: 'Built a strong product and technical story under pressure, then shipped it into a winning outcome.',
   },
   {
-    title: 'Kaggle Competition Winner',
-    event: 'Data Science Competition',
-    description: 'Secured top 1% position in a machine learning competition focused on predictive analytics'
+    title: 'Kaggle top placement',
+    context: 'Modeling discipline',
+    description: 'Proved strong experimentation instincts through competitive machine learning work and evaluation-driven iteration.',
   },
   {
-    title: 'Open Source Contributor',
-    event: 'Apache Airflow & dbt',
-    description: 'Active contributor to Apache Airflow and dbt projects, with multiple merged pull requests'
+    title: 'Open source contribution',
+    context: 'Engineering maturity',
+    description: 'Contributed back to tooling ecosystems instead of only consuming them, which signals deeper technical ownership.',
   },
   {
-    title: 'Technical Excellence Award',
-    event: 'University Tech Fest',
-    description: 'Recognized for outstanding contributions in developing innovative data engineering solutions'
-  }
+    title: 'Technical excellence recognition',
+    context: 'Academic / event proof',
+    description: 'Repeatedly stood out for building practical systems, not only for theory or presentation.',
+  },
 ];
 
 export default function About() {
   return (
-    <section className="min-h-screen w-full py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-6xl mx-auto">
-        {/* Hero Section */}
-        <div className="flex flex-col md:flex-row items-center gap-12 mb-6 text-center md:text-left">
-          {/* Photo Section */}
+    <section className="px-4 pb-20 pt-28 sm:px-6 sm:pt-32">
+      <div className="mx-auto max-w-7xl">
+        <div className="grid gap-6 lg:grid-cols-[0.42fr_0.58fr]">
           <motion.div
-            initial={{ opacity: 0, scale: 0.5 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5 }}
-            className="relative w-56 h-56 sm:w-64 sm:h-64 md:w-80 md:h-80"
+            initial={{ opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.45 }}
+            className="system-panel relative overflow-hidden rounded-[2.7rem] p-6 sm:p-8"
           >
-            <div className="absolute inset-0 bg-gradient-to-r from-purple-500 to-pink-500 rounded-3xl transform rotate-6 opacity-20"></div>
-            <div className="absolute inset-0 bg-gradient-to-r from-purple-500 to-pink-500 rounded-3xl transform -rotate-6 opacity-20"></div>
-            <div className="relative w-full h-full bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 rounded-3xl overflow-hidden border border-white/10 p-2">
-              <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-pink-500/10"></div>
-              <div className="relative w-full h-full rounded-2xl overflow-hidden">
-                <Image
-                  src="/image.png"
-                  alt="Arya Mehta"
-                  fill
-                  style={{ objectFit: 'cover' }}
-                  className="hover:scale-110 transition-transform duration-500"
-                />
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_18%,rgba(158,109,244,0.12),transparent_22%),radial-gradient(circle_at_82%_78%,rgba(98,208,255,0.08),transparent_20%)]" />
+            <div className="relative">
+              <p className="section-kicker">Profile chamber</p>
+              <div className="mt-6 flex justify-center lg:justify-start">
+                <div className="relative h-64 w-56 overflow-hidden rounded-[2rem] border border-[var(--color-line)] bg-white/65 p-2 shadow-[0_30px_90px_rgba(41,26,82,0.12)] sm:h-72 sm:w-64">
+                  <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.12),transparent)]" />
+                  <div className="relative h-full w-full overflow-hidden rounded-[1.5rem]">
+                    <Image
+                      src="/image.png"
+                      alt="Arya Mehta"
+                      fill
+                      sizes="(min-width: 1024px) 256px, 224px"
+                      className="object-cover"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-6 grid gap-3 sm:grid-cols-3 lg:grid-cols-1">
+                <div className="signal-card flex items-center gap-3">
+                  <MoonStar className="h-5 w-5 text-[var(--color-signal)]" />
+                  <div>
+                    <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[var(--color-muted)]">Builder mode</p>
+                    <p className="mt-1 text-sm text-[var(--color-ink)]">Night-owl, architecture-first</p>
+                  </div>
+                </div>
+                <div className="signal-card flex items-center gap-3">
+                  <Sparkles className="h-5 w-5 text-[var(--color-signal)]" />
+                  <div>
+                    <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[var(--color-muted)]">Core strength</p>
+                    <p className="mt-1 text-sm text-[var(--color-ink)]">Turning complexity into systems</p>
+                  </div>
+                </div>
+                <div className="signal-card flex items-center gap-3">
+                  <Trophy className="h-5 w-5 text-[var(--color-signal)]" />
+                  <div>
+                    <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[var(--color-muted)]">Signal</p>
+                    <p className="mt-1 text-sm text-[var(--color-ink)]">Backend + data + applied AI</p>
+                  </div>
+                </div>
               </div>
             </div>
           </motion.div>
 
-          {/* Bio Section */}
           <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="flex-1"
+            initial={{ opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.45, delay: 0.08 }}
+            className="system-panel rounded-[2.7rem] p-7 sm:p-10"
           >
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 bg-clip-text text-transparent mb-6">
-              About Me
+            <p className="section-kicker">About Arya</p>
+            <h1 className="display-face mt-4 text-4xl leading-tight text-[var(--color-ink)] sm:text-6xl">
+              I build technical systems that can survive real use, not just real demos.
             </h1>
-            <p className="text-base sm:text-lg text-white/80 mb-6">
-              Hi! I&apos;m Arya Mehta, a <span className="text-pink-400 font-semibold">Data Engineering Specialist</span> and <span className="text-purple-400 font-semibold">Full Stack Developer</span> who transforms complex data challenges into powerful business solutions. With a proven track record of <span className="text-blue-400">optimizing database performance by 40%</span> and architecting systems that process <span className="text-green-400">millions of records daily</span>, I bring both technical expertise and business impact to the table.
-            </p>
 
-            <p className="text-base sm:text-lg text-white/80 mb-6">
-              My technical arsenal includes <span className="text-yellow-400">AWS cloud infrastructure</span>, where I&apos;ve designed high-performance database solutions and automated pipelines. I&apos;ve revolutionized data processing workflows using <span className="text-purple-400">Apache Spark, Airflow, and advanced SQL optimization</span> techniques, resulting in <span className="text-pink-400">25% cost reduction</span> while maintaining robust ACID compliance. Beyond the code, I&apos;m passionate about building <span className="text-blue-400">scalable, secure, and efficient systems</span> that drive business growth through data-driven insights.
-            </p>
+            <div className="mt-6 space-y-5 text-base leading-8 text-[var(--color-muted)] sm:text-lg">
+              <p>
+                I&apos;m Arya Mehta, a builder focused on backend engineering, data systems, and applied AI. I care most about work that takes messy inputs, sharp constraints, and real operational pressure, then turns them into something legible and reliable.
+              </p>
+              <p>
+                My strongest zone is where infrastructure, intelligence, and product execution overlap. That includes data platforms, retrieval systems, graph-aware workflows, and full-stack products where architecture quality matters as much as surface polish.
+              </p>
+              <p>
+                I like systems that are observable, scalable, and explainable to other engineers. I also like making them feel intentional, because strong engineering is not only about whether the system runs, but whether people can trust and extend it.
+              </p>
+            </div>
 
-            <div className="flex flex-col sm:flex-row gap-4 mb-8 justify-center md:justify-start">
-              <motion.a
+            <div className="mt-8 flex flex-wrap gap-3">
+              <a
                 href="/SDE.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="relative group"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+                className="command-chip bg-[var(--color-ink)] text-[var(--color-surface)]"
               >
-                <div className="absolute -inset-2 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg opacity-0 group-hover:opacity-100 blur transition-opacity duration-500" />
-                <div className="relative px-6 py-3 rounded-lg backdrop-blur-sm border border-white/10 text-white font-semibold transition-colors duration-300">
-                  <span className="mr-2">👀</span> View Resume
-                </div>
-              </motion.a>
-              <motion.a
+                View resume
+                <ArrowUpRight className="h-4 w-4" />
+              </a>
+              <a
                 href="/SDE.pdf"
                 download="Arya_Mehta_Resume.pdf"
-                className="relative group"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+                className="command-chip border border-[var(--color-line)] bg-white/70 text-[var(--color-ink)]"
               >
-                <div className="absolute -inset-2 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg opacity-0 group-hover:opacity-100 blur transition-opacity duration-500" />
-                <div className="relative px-6 py-3 rounded-lg backdrop-blur-sm border border-white/10 text-white font-semibold transition-colors duration-300">
-                  <span className="mr-2">📥</span> Download Resume
-                </div>
-              </motion.a>
+                Download resume
+                <Download className="h-4 w-4" />
+              </a>
             </div>
-
-            <p className="text-base sm:text-lg text-white/80 mb-6">
-              <span className="text-pink-400 font-semibold">Fun Fact:</span> 🌃 When the city sleeps, I code—nighttime is when I&apos;m most productive!
-            </p>
           </motion.div>
         </div>
 
-        {/* Skills Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.4 }}
-          className="mb-20"
-        >
-          <h2 className="text-2xl sm:text-3xl font-bold text-white mb-8 text-center md:text-left">My Toolbox</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:max-h-[600px] md:overflow-y-auto md:pr-4 md:styled-scrollbar">
-            {skills.map((skill, idx) => (
-              <motion.div
-                key={skill.category}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.1 * idx }}
-                className="bg-gradient-to-br from-gray-800/50 to-gray-900/50 rounded-xl p-6 border border-white/10 hover:border-pink-500/30 transition-all duration-300"
-              >
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="p-2 bg-pink-500/20 rounded-lg">
-                    {skill.icon}
-                  </div>
-                  <h3 className="text-xl font-semibold text-white">{skill.category}</h3>
-                </div>
-                <ul className="space-y-2">
-                  {skill.items.map((item) => (
-                    <li key={item} className="text-white/60 flex items-center gap-2">
-                      <span className="w-1.5 h-1.5 bg-pink-400 rounded-full"></span>
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
+        <div className="mt-6 grid gap-6 xl:grid-cols-[0.56fr_0.44fr]">
+          <motion.div
+            initial={{ opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.45, delay: 0.14 }}
+            className="system-panel rounded-[2.5rem] p-7 sm:p-9"
+          >
+            <p className="section-kicker">Capability lanes</p>
+            <h2 className="mt-4 text-3xl font-semibold text-[var(--color-ink)] sm:text-5xl">
+              The toolbox matters less than how the tools connect.
+            </h2>
 
-        {/* Achievements Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.6 }}
-          className="mb-20"
-        >
-          <h2 className="text-2xl sm:text-3xl font-bold text-white mb-8 text-center md:text-left">Achievements</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:max-h-[500px] md:overflow-y-auto md:pr-4 md:styled-scrollbar">
-            {achievements.map((achievement, idx) => (
-              <motion.div
-                key={achievement.title}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.1 * idx }}
-                className="bg-gradient-to-br from-gray-800/50 to-gray-900/50 rounded-xl p-6 border border-white/10 hover:border-pink-500/30 transition-all duration-300"
-              >
-                <div className="flex items-start gap-4">
-                  <div className="p-3 bg-pink-500/20 rounded-lg">
-                    <FiAward className="w-6 h-6 text-pink-400" />
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-semibold text-white mb-2">{achievement.title}</h3>
-                    <p className="text-pink-400 font-medium mb-2">{achievement.event}</p>
-                    <p className="text-white/60">{achievement.description}</p>
+            <div className="mt-8 grid gap-4 md:grid-cols-2">
+              {skills.map((skill) => (
+                <div key={skill.category} className="rounded-[1.8rem] border border-[var(--color-line)] bg-white/60 p-5">
+                  <p className="text-sm font-semibold uppercase tracking-[0.22em] text-[var(--color-signal)]">
+                    {skill.category}
+                  </p>
+                  <div className="mt-4 flex flex-wrap gap-2">
+                    {skill.items.map((item) => (
+                      <span
+                        key={item}
+                        className="rounded-full border border-[var(--color-line)] bg-white/80 px-3 py-1 text-sm text-[var(--color-muted)]"
+                      >
+                        {item}
+                      </span>
+                    ))}
                   </div>
                 </div>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
+              ))}
+            </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.45, delay: 0.2 }}
+            className="system-panel rounded-[2.5rem] p-7 sm:p-9"
+          >
+            <p className="section-kicker">Proof markers</p>
+            <h2 className="mt-4 text-3xl font-semibold text-[var(--color-ink)] sm:text-5xl">
+              Signal that sits behind the introduction.
+            </h2>
+
+            <div className="mt-8 grid gap-4">
+              {achievements.map((achievement) => (
+                <div key={achievement.title} className="rounded-[1.8rem] border border-[var(--color-line)] bg-white/60 p-5">
+                  <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[var(--color-signal)]">
+                    {achievement.context}
+                  </p>
+                  <h3 className="mt-3 text-xl font-semibold text-[var(--color-ink)]">{achievement.title}</h3>
+                  <p className="mt-3 text-sm leading-7 text-[var(--color-muted)]">{achievement.description}</p>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
       </div>
     </section>
   );
-} 
+}
